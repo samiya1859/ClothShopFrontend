@@ -1,0 +1,32 @@
+.user-img-sec img{
+     width: 160px;
+     height: 160px;
+     border-radius: 50%;
+}
+.user-img-sec{
+    padding: 40px;
+}
+.user-function{
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.user-function button{
+    background: transparent;
+    border: 1px solid rgb(27, 26, 26);
+    border-radius: 7px;
+    padding: 12px 30px;
+    transition: all .4s ease;
+}
+.user-function button:hover{
+   background: rgb(1, 40, 1);
+   color: white;
+   letter-spacing: 2px;
+}
+.user-details{
+    align-items: center;
+    justify-content: center;
+}
