@@ -113,3 +113,23 @@ document.addEventListener("DOMContentLoaded", function() {
     const isLogged = true; // Example: Set to true if user is logged in, false otherwise
     handleNavbar(isLogged);
 });
+
+
+// for logout
+const handlelogOut = () => {
+    const token = localStorage.getItem("token");
+  
+    fetch("http://127.0.0.1:8000/customer/logout/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+      });
+  };

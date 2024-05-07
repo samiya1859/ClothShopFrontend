@@ -9,24 +9,7 @@ function getCSRFToken() {
 
 
 
-// for logout
-const handlelogOut = () => {
-    const token = localStorage.getItem("token");
-  
-    fetch("http://127.0.0.1:8000/customer/logout/", {
-      method: "POST",
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        localStorage.removeItem("token");
-        localStorage.removeItem("user_id");
-      });
-  };
+
   
 
 // for loading all products through API
@@ -90,15 +73,21 @@ const getparams = () => {
 
 // Adding to cart
 const AddtoCart = (productId) => {
-    fetch(`http://127.0.0.1:8000/product/addtocart/`,{
+    console.log(productId);
+    fetch(`http://127.0.0.1:8000/product/carts/`,{
         method:'POST',
         headers:{
-            'content-type':'application/json',
-            'X-CSRFToken':getCSRFToken(),
+            'Content-Type':'application/json',
+            'X-CSRFToken': getCSRFToken(),
         },
-        body:JSON.stringify({productId:productId})
+        body: {
+            "Customer": 3,
+            "product": 4,
+            "quantity": 1
+        } // Corrected key name to match backend
     })
     .then(response => {
+        console.log(response);
         if (response.ok) {
             // Parse the response body as JSON
             return response.json();
@@ -110,12 +99,45 @@ const AddtoCart = (productId) => {
     .then(data => {
         // Handle the response data
         console.log('Product added to cart successfully:', data);
-        // Optionally, you can update the UI to indicate that the product was added to the cart
+        
     })
     .catch(error => {
         console.error('Error adding product to cart:', error);
     });
 
+};
+
+// for getting wishlist
+const addToWishlist = (productId) => {
+   
+    const data = {
+        
+        product: productId
+    };
+
+    fetch(`http://127.0.0.1:8000/purchase/wishlist/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+            'X-CSRFToken': getCSRFToken(), // Include CSRF token for CSRF protection
+        },
+        body: JSON.stringify(data) // Convert the data object to a JSON string
+    })
+    .then(response => {
+        if (response.ok) {
+            // If the response status is within the success range (200-299)
+            console.log('Product added to wishlist successfully');
+            
+        } else {
+            // If the response status is not within the success range
+            console.error('Failed to add product to wishlist');
+            
+        }
+    })
+    .catch(error => {
+        
+        console.error('Error adding product to wishlist:', error);
+    });
 };
 
 
@@ -154,7 +176,7 @@ const displayProductDetails = (product) => {
                         `<input type="number" value="1" style="width: 10%;"> 
                         <a onclick="AddtoCart(${product.id})" href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To Cart</a>` 
                         :
-                        `<a href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To wishlist</a>`
+                        `<a href="#" onclick="addToWishlist(${product.id})" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To wishlist</a>`
                     }
                 </div>
                 <span class="Pro-detail-text">
