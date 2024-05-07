@@ -34,9 +34,11 @@
         </ul>
 
         <div class="icons">
-            <a href="login.html"><img src="images/login-circle-line.png" alt=""></a>
-            <a href="profile.html"><img src="images/user-fill.png" alt=""></a>
-            <a href="#"><img src="images/shopping-cart-2-line.png" alt=""></a>
+            <a id="user" href="profile.html"><img src="images/user-fill.png" alt=""></a>
+            <a id="cart" href="cart.html"><img src="images/shopping-cart-2-line.png" alt=""></a>
+            <a onclick="handlelogOut()" id="logout" href="#"><i class="ri-logout-circle-line"></i></a>
+            <a id="register" href="register.html">Register</a>
+            <a id="login" href="login.html">Login</a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
     </header>
@@ -235,6 +237,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="auth.js"></script>
+    
 
 </body>
 </html>

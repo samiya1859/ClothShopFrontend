@@ -1,3 +1,34 @@
+// for getting CSRFToken
+function getCSRFToken() {
+    const csrfCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='));
+    if (csrfCookie) {
+        return csrfCookie.split('=')[1];
+    }
+    return null;
+}
+
+
+
+// for logout
+const handlelogOut = () => {
+    const token = localStorage.getItem("token");
+  
+    fetch("http://127.0.0.1:8000/customer/logout/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+      });
+  };
+  
+
 // for loading all products through API
 const loadAllProducts = (search) => {
     console.log(search);
@@ -56,6 +87,38 @@ const getparams = () => {
     .then((data) => displayProductDetails(data));
 };
 
+
+// Adding to cart
+const AddtoCart = (productId) => {
+    fetch(`http://127.0.0.1:8000/product/addtocart/`,{
+        method:'POST',
+        headers:{
+            'content-type':'application/json',
+            'X-CSRFToken':getCSRFToken(),
+        },
+        body:JSON.stringify({productId:productId})
+    })
+    .then(response => {
+        if (response.ok) {
+            // Parse the response body as JSON
+            return response.json();
+        } else {
+            console.error('Failed to add product to cart');
+            throw new Error('Failed to add product to cart');
+        }
+    })
+    .then(data => {
+        // Handle the response data
+        console.log('Product added to cart successfully:', data);
+        // Optionally, you can update the UI to indicate that the product was added to the cart
+    })
+    .catch(error => {
+        console.error('Error adding product to cart:', error);
+    });
+
+};
+
+
 const displayProductDetails = (product) => {
     console.log(product);
     const parent = document.getElementById("product-details");
@@ -74,10 +137,12 @@ const displayProductDetails = (product) => {
         <div class="col-md-7">
             <div class="details-content">
                 <span><h6>Home/Shop</h6></span>
+                <span><h6>${product.brand}</h6></span>
                 <h5 style="font-weight: bold;letter-spacing: 2px;">${product.product_name}</h5>
                 <h2 style="font-weight: bold;">${product.price}$</h2>
+                <h5>${product.rating}</h5>
                 <select name="" id="">
-                    <option value="">Select Size</option>
+                    <option value="">Available Sizes</option>
                     ${product.sizes?.map((item) => `<option value="">${item}</option>`).join("")}
                     </select>
                     ${product.category?.map((item) => `<button class="categorybutton">${item}</button>`).join(" ")}
@@ -87,7 +152,7 @@ const displayProductDetails = (product) => {
 
                     ${product.quantity > 0 ? 
                         `<input type="number" value="1" style="width: 10%;"> 
-                        <a href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To Cart</a>` 
+                        <a onclick="AddtoCart(${product.id})" href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To Cart</a>` 
                         :
                         `<a href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To wishlist</a>`
                     }
@@ -202,3 +267,9 @@ const SortPriceHighToLow = () => {
         console.error("Error fetching or parsing data:", error);
     });
 };
+
+
+
+
+
+// Add to wishlist

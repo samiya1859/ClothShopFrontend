@@ -37,9 +37,11 @@
         </ul>
 
         <div class="icons">
-            <a href="login.html"><img src="images/login-circle-line.png" alt=""></a>
-            <a href="profile.html"><img src="images/user-fill.png" alt=""></a>
-            <a href="#"><img src="images/shopping-cart-2-line.png" alt=""></a>
+            <a id="user" href="profile.html"><img src="images/user-fill.png" alt=""></a>
+            <a id="cart" href="cart.html"><img src="images/shopping-cart-2-line.png" alt=""></a>
+            <a onclick="handlelogOut()" id="logout" href="#"><i class="ri-logout-circle-line"></i></a>
+            <a id="register" href="register.html">Register</a>
+            <a id="login" href="login.html">Login</a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
     </header>
@@ -58,7 +60,7 @@
                 <input id="number"  type="number" placeholder="Your Phone Number">
                 <input id="address" type="text" placeholder="Your Address">
                 <input id="password" type="password" placeholder="your password">
-                <input id="password2" type="password" placeholder="Confirm password">
+                <input id="confirm_password" type="password" placeholder="Confirm password">
                 
                 <input id="registration" type="submit" class="submit-btn" value="Registration">
             </form>

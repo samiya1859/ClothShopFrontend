@@ -21,6 +21,13 @@
     padding: 12px 30px;
     transition: all .4s ease;
 }
+.user-function button a{
+    text-decoration: none;
+    color: black;
+}
+.user-function button a:hover{
+    color: white;
+}
 .user-function button:hover{
    background: rgb(1, 40, 1);
    color: white;
@@ -29,4 +36,36 @@
 .user-details{
     align-items: center;
     justify-content: center;
+}
+
+
+/* review page */
+.review{
+    display: flex;
+    gap: 50px;
+}
+.rev-form{
+    width: 70%;
+    padding: 30px;
+}
+.rev-form input{
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px black;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+}
+.rev-form #submit{
+    background: rgb(5, 73, 5);
+    color: white;
+    padding: 10px 15px;
+    transition: all .4s ease;
+    
+}
+.rev-form #submit:hover{
+    background: rgb(52, 142, 52);
+    transform: translateX(5px);
+}
+.rev-img img{
+    width: 70%;
 }
