@@ -72,72 +72,105 @@ const getparams = () => {
 
 
 // Adding to cart
-const AddtoCart = (productId) => {
-    console.log(productId);
-    fetch(`http://127.0.0.1:8000/product/carts/`,{
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json',
-            'X-CSRFToken': getCSRFToken(),
-        },
-        body: {
-            "Customer": 3,
-            "product": 4,
-            "quantity": 1
-        } // Corrected key name to match backend
-    })
-    .then(response => {
-        console.log(response);
-        if (response.ok) {
-            // Parse the response body as JSON
-            return response.json();
-        } else {
-            console.error('Failed to add product to cart');
-            throw new Error('Failed to add product to cart');
-        }
-    })
-    .then(data => {
-        // Handle the response data
-        console.log('Product added to cart successfully:', data);
-        
-    })
-    .catch(error => {
-        console.error('Error adding product to cart:', error);
-    });
+// Function to retrieve the customer ID from the JWT token
+const getCustomerIdFromToken = () => {
+    // Check if the user ID exists in local storage
+    if (localStorage.getItem('user_id')) {
+        // Retrieve the user ID from local storage
+        const userId = localStorage.getItem('user_id');
 
+        // Return the user ID
+        return userId;
+    } else {
+        // If user ID does not exist in local storage, return null or handle it as needed
+        return null;
+    }
 };
+
+
+// Function to add a product to the cart
+const addToCart = (productId) => {
+
+    const customerId = getCustomerIdFromToken();
+    console.log(customerId);
+    console.log(productId);
+
+    if (customerId) {
+        // If customer ID is available, make the request to add the product to the cart
+        fetch(`http://127.0.0.1:8000/product/carts/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({  
+                "customer": customerId, 
+                "product": productId,
+                "quantity": 1
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to add product to cart');
+            }
+        })
+        .then(data => {
+            console.log('Product added to cart successfully:', data);
+            
+        })
+        .catch(error => {
+            console.error('Error adding product to cart:', error);
+            
+        });
+    } else {
+        
+        console.error('Customer ID not available. User may not be authenticated.');
+        
+    }
+};
+
+
 
 // for getting wishlist
 const addToWishlist = (productId) => {
    
-    const data = {
-        
-        product: productId
-    };
+    // Retrieve the customer ID from local storage
+    const customerId = getCustomerIdFromToken();
 
-    fetch(`http://127.0.0.1:8000/purchase/wishlist/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json', 
-            'X-CSRFToken': getCSRFToken(), // Include CSRF token for CSRF protection
-        },
-        body: JSON.stringify(data) // Convert the data object to a JSON string
-    })
-    .then(response => {
-        if (response.ok) {
-            // If the response status is within the success range (200-299)
-            console.log('Product added to wishlist successfully');
-            
-        } else {
-            // If the response status is not within the success range
-            console.error('Failed to add product to wishlist');
-            
-        }
-    })
-    .catch(error => {
+    if (customerId) {
+        // If customer ID is available, make the request to add the product to the cart
+        fetch(`http://127.0.0.1:8000/purchase/wishlist/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify( 
+                {"customer": customerId, // Use the customerId retrieved from local storage
+                "product": productId,}
+                
+            )
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to add product to wishlist');
+            }
+        })
+        .then(data => {
+            console.log('Product added to Wishlist successfully:', data);
+        })
+        .catch(error => {
+            console.error('Error adding product to Wishlist:', error);
+        });
+    } else {
+        // Handle case where customer ID is not available (e.g., user not authenticated)
+        console.error('Customer ID not available. User may not be authenticated.');
         
-        console.error('Error adding product to wishlist:', error);
-    });
+    }
 };
 
 
@@ -174,7 +207,7 @@ const displayProductDetails = (product) => {
 
                     ${product.quantity > 0 ? 
                         `<input type="number" value="1" style="width: 10%;"> 
-                        <a onclick="AddtoCart(${product.id})" href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To Cart</a>` 
+                        <a onclick="addToCart(${product.id})" href="#" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To Cart</a>` 
                         :
                         `<a href="#" onclick="addToWishlist(${product.id})" class="adding-cart btn text-white" style="background: teal;font-weight: bold;">Add To wishlist</a>`
                     }
@@ -295,3 +328,6 @@ const SortPriceHighToLow = () => {
 
 
 // Add to wishlist
+
+
+

@@ -30,16 +30,18 @@
         <ul class="navbar">
            <li><a href="index.html" class="active">Home</a></li>
            <li><a href="about.html">About</a></li>
-           <li><a href="shop.html">Shop</a></li>
+           <li><a id="shop" href="shop.html">Shop</a></li>
            <li><a href="#">Pages</a></li>
            <!-- <li><a href="#">Blog</a></li> -->
            <li><a href="contact.html">Contact</a></li>
         </ul>
 
         <div class="icons">
-            <a href="login.html"><img src="images/login-circle-line.png" alt=""></a>
-            <a href="profile.html"><img src="images/user-fill.png" alt=""></a>
-            <a href="#"><img src="images/shopping-cart-2-line.png" alt=""></a>
+            <a id="user" href="profile.html"><img src="images/user-fill.png" alt=""></a>
+            <a id="cart" href="cart.html"><img src="images/shopping-cart-2-line.png" alt=""></a>
+            <a onclick="handlelogOut()" id="logout" href="home.html"><i class="ri-logout-circle-line"></i></a>
+            <a id="register" href="register.html">Register</a>
+            <a id="login" href="login.html">Login</a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
     </header>
@@ -146,33 +148,39 @@
     <hr>
     <section class="contact">
         <div class="main-contact">
-            <div class="contact-content">
-                <h5>Get Started</h5>
-                <li><a href="#">Release Notes</a></li>
-                <li><a href="#">Upgrade guide</a></li>
-                <li><a href="#">Browser Support</a></li>
-                <li><a href="#">Dark Mode</a></li>
+            <div class="footer-img">
+                <img src="images/logo.png" alt="">
+                <span>
+                    <h6>#H-16,#R-34,Uttara,Dhaka</h6>
+                </span>
+                <div class="icons d-flex">
+                    <i class="ri-facebook-circle-fill"></i>
+                    <i class="ri-instagram-fill"></i>
+                    <i class="ri-twitter-fill"></i>
+                    <i class="ri-linkedin-box-fill"></i>
+                </div>
             </div>
             <div class="contact-content">
-                <h5>Explore</h5>
-                <li><a href="#">Prototyping</a></li>
-                <li><a href="#">Design systems</a></li>
-                <li><a href="#">Pricing</a></li>
+                <h5>Services</h5>
+                <li><a href="#">Exclusive COllections</a></li>
+                <li><a href="#">Sale products</a></li>
+                <li><a href="#">Affordable price</a></li>
                 <li><a href="#">Security</a></li>
             </div>
             <div class="contact-content">
-                <h5>Resources</h5>
-                <li><a href="#">best</a></li>
-                <li><a href="#">Upgrade guide</a></li>
-                <li><a href="#">Browser Support</a></li>
-                <li><a href="#">Dark Mode</a></li>
+                <h5>Contact Us</h5>
+                <li><a href="#"><i class="ri-mail-fill"></i> zaffree@gmail.com</a></li>
+                <li><a href="#"><i class="ri-phone-fill"></i> 01882228899</a></li>
+                <li><a href="#"><i class="ri-phone-fill"></i> 01882228899</a></li>
+                <li><a href="#"><i class="ri-home-3-fill"></i> #H-16 ,#R-34,Uttara</a></li>
+                
             </div>
             <div class="contact-content">
-                <h5>Community</h5>
-                <li><a href="#">Release Notes</a></li>
-                <li><a href="#">Upgrade guide</a></li>
-                <li><a href="#">Browser Support</a></li>
-                <li><a href="#">Dark Mode</a></li>
+                <h5>Collaborating Brands</h5>
+                <li><a href="#">Lee</a></li>
+                <li><a href="#">Guchi</a></li>
+                <li><a href="#">Bong</a></li>
+                <li><a href="#">walfer</a></li>
             </div>
         </div>
      </section>
@@ -189,6 +197,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="auth.js"></script>
 
 </body>
 </html>    

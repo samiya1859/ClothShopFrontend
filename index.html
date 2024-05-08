@@ -27,8 +27,8 @@
         <ul class="navbar">
            <li><a href="index.html" class="active">Home</a></li>
            <li><a href="about.html">About</a></li>
-           <li><a href="shop.html">Shop</a></li>
-           <li><a href="#">Pages</a></li>
+           <li><a id="shop" href="shop.html">Shop</a></li>
+           <li><a href="#">Blogs</a></li>
            <!-- <li><a href="#">Blog</a></li> -->
            <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -44,18 +44,21 @@
     </header>
 
     <!--Home section design-->
-     <section class="home">
+    <section class="home">
         <div class="home-text">
-           <h4>Be Gorgeous & Confident</h4>
-           <h1>Grab Exclusive Collections for everyone <br><span style="color: darkolivegreen;">With Flat <i style="color: red;font-weight: bolder;font-size: larger;">30%</i> OFF on New Arrivals</span></h1>
-
-           <a href="register.html" class="button" >Register Now</a>
-           
+            <h4>Be Gorgeous & Confident</h4>
+            <h1>Grab Exclusive Collections for everyone <br><span style="color: darkolivegreen;">With Flat <i style="color: red;font-weight: bolder;font-size: larger;">30%</i> OFF on New Arrivals</span></h1>
+    
+            <!-- Use a <span> element with an id to dynamically update the content -->
+            <span id="registerButton">
+                <a href="register.html" class="button">Register Now</a>
+            </span>
         </div>
         <div class="home-img">
             <img src="images/girl.png" alt="">
         </div>
-     </section>
+    </section>
+    
 
      <!--Feature section design-->
      <section class="feature">
@@ -122,8 +125,11 @@
                        <div>
                         <a href="#" class="price">$55.00</a>
                        </div>
-                       <div class="rating">
-                        <a href="#">***</a>
+                       <div class="rating d-flex">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
                        </div> 
                     </div>
                     <div class="heart">
@@ -142,8 +148,11 @@
                        <div>
                         <a href="#" class="price">$55.00</a>
                        </div>
-                       <div class="rating">
-                        <a href="#">***</a>
+                       <div class="rating d-flex">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
                        </div> 
                     </div>
                     <div class="heart">
@@ -162,9 +171,12 @@
                        <div>
                         <a href="#" class="price">$55.00</a>
                        </div>
-                       <div class="rating">
-                        <a href="#">***</a>
-                       </div> 
+                       <div class="rating d-flex">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                        <img src="images/star-fill.png" alt="">
+                       </div>  
                     </div>
                     <div class="heart">
                       <!-- <img src="images/heart-line.png" alt=""> -->
@@ -186,7 +198,9 @@
                 </a>
                 <h3>Special offer in kids products</h3>
                 <p>Fashion and modesty is a form of self-expression and autonomy at a particular perion and place</p>
-                <a href="#" class="row-btn">Dscover more</a>
+                <span id="discoverButton">
+                    <!-- <a href="register.html" class="button">Register Now</a> -->
+                </span>
             </div>
         </div>
      </section>
@@ -195,33 +209,39 @@
      <hr>
      <section class="contact">
         <div class="main-contact">
-            <div class="contact-content">
-                <h5>Get Started</h5>
-                <li><a href="#">Release Notes</a></li>
-                <li><a href="#">Upgrade guide</a></li>
-                <li><a href="#">Browser Support</a></li>
-                <li><a href="#">Dark Mode</a></li>
+            <div class="footer-img">
+                <img src="images/logo.png" alt="">
+                <span>
+                    <h6>#H-16,#R-34,Uttara,Dhaka</h6>
+                </span>
+                <div class="icons d-flex">
+                    <i class="ri-facebook-circle-fill"></i>
+                    <i class="ri-instagram-fill"></i>
+                    <i class="ri-twitter-fill"></i>
+                    <i class="ri-linkedin-box-fill"></i>
+                </div>
             </div>
             <div class="contact-content">
-                <h5>Explore</h5>
-                <li><a href="#">Prototyping</a></li>
-                <li><a href="#">Design systems</a></li>
-                <li><a href="#">Pricing</a></li>
+                <h5>Services</h5>
+                <li><a href="#">Exclusive COllections</a></li>
+                <li><a href="#">Sale products</a></li>
+                <li><a href="#">Affordable price</a></li>
                 <li><a href="#">Security</a></li>
             </div>
             <div class="contact-content">
-                <h5>Resources</h5>
-                <li><a href="#">best</a></li>
-                <li><a href="#">Upgrade guide</a></li>
-                <li><a href="#">Browser Support</a></li>
-                <li><a href="#">Dark Mode</a></li>
+                <h5>Contact Us</h5>
+                <li><a href="#"><i class="ri-mail-fill"></i> zaffree@gmail.com</a></li>
+                <li><a href="#"><i class="ri-phone-fill"></i> 01882228899</a></li>
+                <li><a href="#"><i class="ri-phone-fill"></i> 01882228899</a></li>
+                <li><a href="#"><i class="ri-home-3-fill"></i> #H-16 ,#R-34,Uttara</a></li>
+                
             </div>
             <div class="contact-content">
-                <h5>Community</h5>
-                <li><a href="#">Release Notes</a></li>
-                <li><a href="#">Upgrade guide</a></li>
-                <li><a href="#">Browser Support</a></li>
-                <li><a href="#">Dark Mode</a></li>
+                <h5>Collaborating Brands</h5>
+                <li><a href="#">Lee</a></li>
+                <li><a href="#">Guchi</a></li>
+                <li><a href="#">Bong</a></li>
+                <li><a href="#">walfer</a></li>
             </div>
         </div>
      </section>
