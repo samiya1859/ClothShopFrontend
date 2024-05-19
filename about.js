@@ -19,9 +19,9 @@ const displayAllReviews = (reviews) => {
         div.innerHTML = `
             <div class="reviewer-img"><img src="images/p3.jpg" alt=""></div>
             <div class="review-text">
-                <span><h6>${review.created_on}</h6></span>
-                <h6>${review.reviewer_username}</h6> <!-- Display reviewer's username -->
-                <h5>${review.product_name}</h5> <!-- Display product name -->
+                
+                <h6>User ID -${review.reviewer}</h6> <!-- Display reviewer's username -->
+                <h5>Product ID -${review.product}</h5> <!-- Display product name -->
                 <div class="rating d-flex">
                     ${review.rating}
                 </div>
@@ -35,3 +35,11 @@ const displayAllReviews = (reviews) => {
 
 
 loadAllReviews();
+
+
+
+
+
+
+
+

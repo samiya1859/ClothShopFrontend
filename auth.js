@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     handleNavbar(isLogged);
 });
 
+
 document.addEventListener("DOMContentLoaded", function() {
     // Check if user is logged in by retrieving authentication state from local storage
     const isLogged = localStorage.getItem("token") !== null;
@@ -131,8 +132,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (isLogged) {
         // If user is logged in, display a welcome message
-        const username = localStorage.getItem("username"); // Assuming you store the username in local storage
-        registerButton.innerHTML = `<p>Welcome, ${username}!</p>`;
+        const userId = localStorage.getItem("user_id"); // Assuming you store the username in local storage
+        getUsername(userId)
+        registerButton.innerHTML = `<p class="btn btn-info">Welcome To our Shop</p>`;
         discoverButton.innerHTML = `<a href="shop.html">Discover More</a>`
     } else {
         // If user is not logged in, display the register button

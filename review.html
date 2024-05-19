@@ -24,13 +24,13 @@
 <body>
     <!--Header section navbar-->
     <header class="sticky">
-        <a href="#" class="logoimg"><img src="images/logo.png" alt="logo"></a>
+        <a href="index.html" class="logoimg"><img src="images/logo.png" alt="logo"></a>
 
         <ul class="navbar">
            <li><a href="index.html" class="active">Home</a></li>
            <li><a href="about.html">About</a></li>
-           <li><a href="shop.html">Shop</a></li>
-           <li><a href="#">Pages</a></li>
+           <li><a id="shop" href="shop.html">Shop</a></li>
+           <!-- <li><a href="#">Pages</a></li> -->
            <!-- <li><a href="#">Blog</a></li> -->
            <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -53,17 +53,44 @@
      <section class="review-sec">
         <div class="review">
             <div class="rev-form">
-                 <form action="">
-                    <input type="text" placeholder="Type your username"><br>
-                    <input type="text" placeholder="Share Review"><br>
-                    <input type="submit" name="Submit" id="submit">
-                 </form>
+                <form id="reviewForm" onsubmit="postReview(event)">
+                    <!-- <label for="reviewer"></label> -->
+                    <!-- <input type="text" id="reviewer" name="reviewer" required placeholder="Your Id" ><br><br> -->
+                    
+                    <label for="product"></label>
+                    <input type="text" id="product" name="product" required placeholder="Product Id"><br><br>
+                    
+                    <label for="review"></label><br>
+                    <textarea id="review" name="review" rows="4" cols="50" required placeholder="Your Review:"></textarea><br><br>
+                    
+                    <label for="rating"></label>
+                    <select id="rating" name="rating" required>
+                        <option value="⭐">⭐</option>
+                        <option value="⭐⭐">⭐⭐</option>
+                        <option value="⭐⭐⭐">⭐⭐⭐</option>
+                        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                    </select><br><br>
+                    
+                    <button type="submit" class="btn btn-success">Submit Review</button>
+                </form>
             </div>
             <div class="rev-img">
                 <img src="images/re.png" alt="">
             </div>
         </div>
      </section>
+
+     <section>
+        <div class="All_reviews">
+            <h2>All of your Reviews </h2>
+            <div id="your_reviews" class="review-area">
+                
+            </div>
+        </div>
+     </section>
+
+
     <hr>
     <section class="contact">
         <div class="main-contact">
@@ -115,9 +142,11 @@
 
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="app.js"></script>
+  <!-- <script type="text/javascript" src="script.js"></script> -->
+  <!-- <script type="text/javascript" src="app.js"></script> -->
   <script type="text/javascript" src="auth.js"></script>
+  <script type="text/javascript" src="review.js"></script>
+
   
 
 </body>
