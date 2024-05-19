@@ -33,7 +33,7 @@ function getCookie(name) {
 // for loading all products through API
 const loadAllProducts = (search) => {
     console.log(search);
-    fetch(`http://127.0.0.1:8000/product/list/?search=${search?search:""}`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/list/?search=${search?search:""}`)
     .then(res => res.json())
     .then(data => displayProducts(data));
 };
@@ -83,11 +83,11 @@ loadAllProducts();
 const getparams = () => {
     const params = new URLSearchParams(window.location.search).get("productId");
     console.log(params);
-    fetch(`http://127.0.0.1:8000/product/list/${params}`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/list/${params}`)
     .then(res => res.json())
     .then((data) => displayProductDetails(data));
 
-    fetch(`http://127.0.0.1:8000/product/reviews/?product=${params}`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/reviews/?product=${params}`)
     .then((res) => res.json())
     .then((Revdata) => displayAllReviewsForAProduct(Revdata))
 };
@@ -119,7 +119,7 @@ const addToCart = (productId) => {
 
     if (customerId) {
         // If customer ID is available, make the request to add the product to the cart
-        fetch(`http://127.0.0.1:8000/product/carts/`, {
+        fetch(`https://clothshopbackend-2.onrender.com/product/carts/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -140,6 +140,7 @@ const addToCart = (productId) => {
         })
         .then(data => {
             console.log('Product added to cart successfully:', data);
+            alert("Product added to cart successfully");
             
         })
         .catch(error => {
@@ -156,7 +157,7 @@ const addToCart = (productId) => {
 const Purchase = (productId) => {
     const customerId = getCustomerIdFromToken();
     if (customerId){
-        fetch(`http://127.0.0.1:8000/purchase/buy/`, {
+        fetch(`https://clothshopbackend-2.onrender.com/purchase/buy/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -207,7 +208,7 @@ const Purchase = (productId) => {
 const getAllpurchaseItem = () => {
     const customerId = localStorage.getItem('user_id');
     if (customerId){
-        fetch(`http://127.0.0.1:8000/purchase/buy/?user_id=${customerId}`)
+        fetch(`https://clothshopbackend-2.onrender.com/purchase/buy/?user_id=${customerId}`)
         .then((res) => {
             if (!res.ok) {
                 throw new Error('Failed to fetch purchased products');
@@ -220,7 +221,7 @@ const getAllpurchaseItem = () => {
                 const purchaseItems = [];
                 data.results.forEach(purItem => {
                     console.log(purItem.product);
-                    fetch(`http://127.0.0.1:8000/product/list/${purItem.product}`)
+                    fetch(`https://clothshopbackend-2.onrender.com/product/list/${purItem.product}`)
                     .then((res) => res.json())
                     .then((purdata) => {
                         console.log(purdata);
@@ -280,7 +281,7 @@ getAllpurchaseItem();
 const getAllWishlistItem = () => {
     const customerId = localStorage.getItem('user_id');
     if (customerId){
-        fetch(`http://127.0.0.1:8000/purchase/wishlist/?user_id=${customerId}`)
+        fetch(`https://clothshopbackend-2.onrender.com/purchase/wishlist/?user_id=${customerId}`)
         .then((res) => {
             if (!res.ok) {
                 throw new Error('Failed to fetch wishlisted products');
@@ -293,7 +294,7 @@ const getAllWishlistItem = () => {
                 const wishedItems = [];
                 data.results.forEach(wishItem => {
                     console.log(wishItem.product);
-                    fetch(`http://127.0.0.1:8000/product/list/${wishItem.product}`)
+                    fetch(`https://clothshopbackend-2.onrender.com/product/list/${wishItem.product}`)
                     .then((res) => res.json())
                     .then((wishdata) => {
                         console.log(wishdata);
@@ -351,7 +352,7 @@ getAllWishlistItem();
 const removeFromCart = (cartId) => {
     const customer = getCustomerIdFromToken()
     if (customer){
-        fetch(`http://127.0.0.1:8000/product/carts/${cartId}`, {
+        fetch(`https://clothshopbackend-2.onrender.com/product/carts/${cartId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -384,7 +385,7 @@ const removeFromCart = (cartId) => {
 const removeFromWishlist = (wishId) => {
     const customer = getCustomerIdFromToken()
     if (customer){
-        fetch(`http://127.0.0.1:8000/purchase/wishlist/${wishId}`, {
+        fetch(`https://clothshopbackend-2.onrender.com/purchase/wishlist/${wishId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -418,7 +419,7 @@ const removeFromWishlist = (wishId) => {
 const loadAllCarts = () => {
     const customerId = localStorage.getItem('user_id');
     console.log(customerId);
-    fetch(`http://127.0.0.1:8000/product/carts/?user_id=${customerId}`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/carts/?user_id=${customerId}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -426,7 +427,7 @@ const loadAllCarts = () => {
             data.forEach(cartItem => {
                 console.log(cartItem.product);
                 // Fetch product data for each cart item
-                fetch(`http://127.0.0.1:8000/product/list/${cartItem.product}`)
+                fetch(`https://clothshopbackend-2.onrender.com/product/list/${cartItem.product}`)
                     .then((res) => res.json())
                     .then((prodata) => {
                         console.log(prodata);
@@ -480,7 +481,7 @@ const addToWishlist = (productId) => {
 
     if (customerId) {
         // If customer ID is available, make the request to add the product to the cart
-        fetch(`http://127.0.0.1:8000/purchase/wishlist/`, {
+        fetch(`https://clothshopbackend-2.onrender.com/purchase/wishlist/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -501,6 +502,7 @@ const addToWishlist = (productId) => {
         })
         .then(data => {
             console.log('Product added to Wishlist successfully:', data);
+            alert("Product added to Wishlist successfully");
         })
         .catch(error => {
             console.error('Error adding product to Wishlist:', error);
@@ -666,7 +668,7 @@ getparams();
 
 
 const loadSizes = () => {
-    fetch(`http://127.0.0.1:8000/product/sizes/`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/sizes/`)
     .then(res => res.json())
     .then(data => displaySizes(data));
 };
@@ -714,7 +716,7 @@ handleSearch();
 
 const SortPricelowTohigh = () => {
     // Fetch data from your API
-    fetch(`http://127.0.0.1:8000/product/list/`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/list/`)
     .then((res) => res.json())
     .then((data) => {
         // Check if data is an array
@@ -738,7 +740,7 @@ const SortPricelowTohigh = () => {
 
 const SortPriceHighToLow = () => {
     // Fetch data from your API
-    fetch(`http://127.0.0.1:8000/product/list/`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/list/`)
     .then((res) => res.json())
     .then((data) => {
         // Check if data is an array

@@ -51,7 +51,7 @@ const PostReview = async (event) => {
         rating,
     };
 
-    fetch(`http://127.0.0.1:8000/product/reviews/`, {
+    fetch(`https://clothshopbackend-2.onrender.com/product/reviews/`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(reviewInfo),
@@ -76,7 +76,7 @@ document.getElementById('reviewForm').addEventListener('submit', PostReview);
 
 const isReviewed = async (productId, userId) => {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/product/reviews/?product=${productId}&user=${userId}`, {
+        const response = await fetch(`https://clothshopbackend-2.onrender.com/product/reviews/?product=${productId}&user=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ const isReviewed = async (productId, userId) => {
 
 const loadAllofyourReviews = () => {
     const userId = getUserId();
-    fetch(`http://127.0.0.1:8000/product/reviews/?reviewer=${userId}`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/reviews/?reviewer=${userId}`)
     .then((res) => res.json())
     .then((data) => {
         console.log(data),
@@ -139,7 +139,7 @@ function deleteReview(reviewId) {
     
     // If the user confirms deletion, send a DELETE request to the server
     if (confirmation) {
-        fetch(`http://127.0.0.1:8000/product/reviews/${reviewId}`, {
+        fetch(`https://clothshopbackend-2.onrender.com/product/reviews/${reviewId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

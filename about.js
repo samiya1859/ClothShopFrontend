@@ -1,6 +1,6 @@
 // All reviews 
 const loadAllReviews = () => {
-    fetch(`http://127.0.0.1:8000/product/reviews/`)
+    fetch(`https://clothshopbackend-2.onrender.com/product/reviews/`)
     .then((res)=>res.json())
     .then((data)=>displayAllReviews(data))
 };

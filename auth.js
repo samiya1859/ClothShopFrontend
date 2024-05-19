@@ -29,7 +29,7 @@ const handleRegistration = (event) => {
    }
 
    // Send POST request to backend
-   fetch(`http://127.0.0.1:8000/customer/register/`, {
+   fetch(`https://clothshopbackend-2.onrender.com/customer/register/`, {
        method: "POST",
        headers: { "Content-Type": "application/json" },
        body: JSON.stringify(registrationInfo),
@@ -65,7 +65,7 @@ const handleLogin = (event) => {
    const password = getValue("login-password")
 
    if(username ,password){
-      fetch(`http://127.0.0.1:8000/customer/login/`,{
+      fetch(`https://clothshopbackend-2.onrender.com/customer/login/`,{
          method:"POST",
          headers:{"content-type":"application/json"},
          body:JSON.stringify({username,password}),
@@ -79,7 +79,8 @@ const handleLogin = (event) => {
             localStorage.setItem("token",data.token);
             localStorage.setItem("user_id",data.user_id);
             handleNavbar(true);
-            window.location.href="index.html"       
+            window.location.href="index.html"  
+            alert("Logged in successfully");     
         }
       });
 
@@ -148,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const handlelogOut = () => {
     const token = localStorage.getItem("token");
   
-    fetch("http://127.0.0.1:8000/customer/logout/", {
+    fetch("https://clothshopbackend-2.onrender.com/customer/logout/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
@@ -160,5 +161,6 @@ const handlelogOut = () => {
         console.log(data);
         localStorage.removeItem("token");
         localStorage.removeItem("user_id");
+        alert("Logged out Successfully!");
       });
   };
